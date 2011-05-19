@@ -1,0 +1,47 @@
+NicoShifts
+==========
+
+User-friendly view of NicoVideo live timeshifts
+
+(japanese follows)
+
+ニコ生のタイムシフトを見やすく表示するソフトウェアです。
+
+* タイムシフトが見られるやつだけ表示する
+* コミュニティをタグで分類できる
+
+Install
+=======
+
+    $ gem i nicoshifts
+
+
+Settings
+========
+
+Make ~/.nicoshifts.json like:
+
+    $ cat ~/.nicoshifts.json
+    {
+      "communities": [
+        {
+          "co": 51402,
+          "tags": "puyo",
+          "memo": "momoken/tom/squika"
+        }
+      ]
+    }
+
+Usage
+=====
+
+    $ nicoshifts
+
+Then input login info for nicovideo.com (it is saved under ~/.pit/)
+
+Contact
+=======
+
+Twitter: @yhara, @yhara_en
+
+https://github.com/yhara/nicoshifts

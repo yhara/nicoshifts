@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift File.expand_path("../lib", File.dirname(__FILE__))
+require 'json'
 require 'nicoshifts'
 require 'slim'
 require 'slop'
@@ -7,8 +8,25 @@ require 'slop'
 opts = Slop.parse!(:help => true) do
   on 'p', 'port', true,        :default => 2525, :as => :integer
 #  on      'prefix', true,      :default => ""
-#  on      'data', true,        :default => "~/.moneyrail.db"
+  on      'data', true,        :default => "~/.nicoshifts.json"
 end
+
+=begin
+# data format:
+
+$ cat ~/.nicoshifts.json
+{
+  "communities": [
+    {
+      "co": 51402,
+      "tags": "puyo",
+      "memo": "momoken/tom/squika"
+    }
+  ]
+}
+=end
+
+NicoShifts::Server.set :data_path, File.expand_path(opts[:data])
 
 conf = NicoShifts::Conf.get
 $nv = Nicovideo.new(conf['mail'], conf['password'])

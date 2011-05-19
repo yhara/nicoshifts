@@ -6,18 +6,18 @@ class Nicovideo
 
   MAX_PAGES = 10
   ONE_WEEK = 7*24*60*60
-  def live_archives(co)
+  def live_archives(co_number)
     co_name = nil
     ret = []
 
     1.upto(MAX_PAGES) do |i|
-      page = @agent.get("http://com.nicovideo.jp/live_archives/#{co}?page=#{i}&bias=0")
+      page = @agent.get("http://com.nicovideo.jp/live_archives/co#{co_number}?page=#{i}&bias=0")
       doc = page.root
       co_name ||= doc.at("a.chcom_prof_title").text
       table = doc.at("table.live_history")
       break if table.nil?
 
-      lives = parse_live_history_table(co, co_name, table)
+      lives = parse_live_history_table(co_number, co_name, table)
       ret.concat lives
       break if (Time.now - lives.last.started_at) > ONE_WEEK
     end 
@@ -43,7 +43,7 @@ class Nicovideo
     page.header['x-niconico-authflag'] != '0'
   end
 
-  def parse_live_history_table(co, co_name, table)
+  def parse_live_history_table(co_number, co_name, table)
     (table/:tr).map{|tr|
       tds = (tr/:td)
       if tds.empty?
@@ -62,7 +62,7 @@ class Nicovideo
 
         is_recorded = !!(td_title.to_html =~ /btn_timeshift_ss.png/)
 
-        NicoShifts::Live.new(co, co_name, url, started_at, talker,
+        NicoShifts::Live.new(co_number, co_name, url, started_at, talker,
                              title, desc, is_recorded)
       end
     }.compact

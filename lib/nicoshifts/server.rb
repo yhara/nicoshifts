@@ -21,8 +21,16 @@ module NicoShifts
       end
                
       @lives = coms.map{|comm|
-        $nv.live_archives(comm.co) || []
-      }.flatten.sort_by{|live| live.started_at}
+        lives = $nv.live_archives(comm.co) || []
+        if comm.ng
+          lives.reject{|live|
+            live.title.include? comm.ng
+          }
+        else
+          lives
+        end
+      }.flatten.
+        sort_by{|live| live.started_at}
 
       slim :index
     end

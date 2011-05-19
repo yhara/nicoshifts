@@ -1,10 +1,17 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift File.expand_path("../lib", File.dirname(__FILE__))
 require 'nicoshifts'
-require 'sinatra'
 require 'slim'
+require 'slop'
+
+opts = Slop.parse!(:help => true) do
+  on 'p', 'port', true,        :default => 2525, :as => :integer
+#  on      'prefix', true,      :default => ""
+#  on      'data', true,        :default => "~/.moneyrail.db"
+end
 
 conf = NicoShifts::Conf.get
 $nv = Nicovideo.new(conf['mail'], conf['password'])
 
-NicoShifts::Server.run! :port => 2525
+puts "Starting nicoshifts server on port #{opts[:port]}..."
+NicoShifts::Server.run! :port => opts[:port]

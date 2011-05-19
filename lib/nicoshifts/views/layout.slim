@@ -1,0 +1,59 @@
+html
+  head
+    title
+      | NicoShifts
+    | <style type="text/css"><!--
+      * {
+        font-size: 8pt;
+      }
+
+      /*逕滓叛騾∝ｱ･豁ｴ*/
+      table.live_history {
+          width: 700px;
+          margin: 10px auto 10px;
+          border-collapse: collapse;
+          border:1px solid #cccccc;
+      }
+      .live_history th {
+          color: #333333;
+          border: 1px solid #cccccc;
+          padding: 4px;
+          text-align: center;
+          background: #eeeeee;
+      }
+      .live_history td {
+          overflow: hidden;
+          color:#333333;
+          border:1px solid #cccccc;
+          background: #ffffff;
+          padding:4px;
+      }
+      .live_history td.date {
+          text-align: center;
+          white-space: nowrap;
+      }
+      .live_history td.user,
+      .live_history td.user .txt {
+          text-align: center;
+          width: 100px;
+      }
+      .live_history td.title,
+      .live_history td.title .txt {
+          width: 200px;
+          line-height: 160%;
+          overflow: hidden;
+      }
+      .live_history td.desc,
+      .live_history td.desc .txt {
+          width: 280px;
+          line-height: 160%;
+          overflow: hidden;
+      }
+      --></style>
+
+  body
+    h1 nicoshifts
+
+    == yield
+
+

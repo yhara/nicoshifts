@@ -1,0 +1,25 @@
+table
+  tr
+    th date
+    th community
+    th talker
+    th title
+    th desc
+
+  - ([nil]+@lives).each_cons(2) do |prev, live|
+    - next if not live.recorded?
+    - if prev and (prev.started_at.day != live.started_at.day)
+      tr
+        td colspan="5"
+          hr
+    tr
+      td = live.started_at
+      td
+        a href="http://com.nicovideo.jp/community/#{live.co}"
+          = live.co_name
+      td = live.talker
+      td
+        a href=(live.url) style="#{'font-weight:bold' if live.recorded?}"
+          = live.title
+      td = live.desc
+

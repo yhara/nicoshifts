@@ -24,7 +24,7 @@ module NicoShifts
         lives = $nv.live_archives(comm.co) || []
         if comm.ng
           lives.reject{|live|
-            live.title.include? comm.ng
+            Array(comm.ng).any?{|ng| live.title.include? ng}
           }
         else
           lives

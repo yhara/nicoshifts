@@ -1,6 +1,7 @@
 class Nicovideo
   def initialize(mail, pass)
     @agent = Mechanize.new
+    @agent.max_history = 0
     login(mail, pass)
   end
 

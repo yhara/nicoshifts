@@ -3,7 +3,7 @@ NicoShifts
 
 User-friendly view of NicoVideo live timeshifts
 
-(japanese follows)
+(Japanese follows)
 
 ニコ生のタイムシフトを見やすく表示するソフトウェアです。
 
@@ -37,7 +37,7 @@ Usage
 
     $ nicoshifts
 
-Then input login info for nicovideo.com (it is saved under ~/.pit/)
+Then input login info for nicovideo.jp (it is saved under ~/.pit/)
 
 Contact
 =======
